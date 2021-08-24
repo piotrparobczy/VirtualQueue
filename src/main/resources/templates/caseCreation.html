@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>CaseCreation</title>
+    <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+
+<header th:replace="fragments/header :: header">
+    <!-- insert header -->
+</header>
+
+<section class="case-creation">
+    <h2>Create Case</h2>
+
+    <form th:object="${caseDto}" th:method="post" th:action="@{/}" name="caseform">
+        <div class="form-group">
+            <input type="text" name="nickname" placeholder="nickname" th:field="*{nickname}"/>
+        </div>
+        <div class="form-group">
+            <input type="radio" name="type" value="normal" id="normal" th:field="*{type}" checked>
+            <label for="normal">normal</label>
+
+            <input type="radio" name="type" value="vip" id="vip" th:field="*{type}">
+            <label for="vip">VIP</label>
+
+            <input type="radio" name="type" value="emergency" id="emergency" th:field="*{type}">
+            <label for="emergency">emergency</label>
+
+
+            <input class="hidden" type="text" name="pin" placeholder="PIN" id="pin" th:field="*{pin}">
+            <p th:if="${param.error}">Not correct password PIN</p>
+        </div>
+        <div class="form-group form-group--buttons">
+            <button class="btn" type="submit">Create Case</button>
+        </div>
+    </form>
+</section>
+
+
+<footer th:replace="fragments/footer :: footer">
+    <!-- insert footer -->
+</footer>
+<script src="js/caseCreation.js"></script>
+</body>
+</html>
